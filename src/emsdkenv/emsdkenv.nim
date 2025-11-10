@@ -98,3 +98,4 @@ else:
       errCheck execCmd(". ./emsdk_env.sh && cd " & curDir & " && " & cmd)
     else:
       echo "error: emsdk version [", ver, "] is not found"
+    setCurrentDir(curDir)
