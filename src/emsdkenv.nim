@@ -5,7 +5,7 @@ export emsdkenv
 
 
 when isMainModule:
-  import os
+  import std/os
 
   if paramCount() == 1:
     emsdkEnv("emcc -v", paramStr(1))
