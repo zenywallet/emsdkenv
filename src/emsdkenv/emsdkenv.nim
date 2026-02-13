@@ -40,7 +40,7 @@ when defined(nimscript):
     if ret:
       let verDir = emsdkDir & "_" & emsdkVer
       if not dirExists(verDir):
-        exec "cp -ar " & emsdkDir & " " & verDir
+        exec "cp -a " & emsdkDir & " " & verDir
         withDir verDir:
           exec "./emsdk install " & emsdkVer
           exec "./emsdk activate " & emsdkVer
@@ -89,7 +89,7 @@ else:
     if ret:
       let verDir = emsdkDir & "_" & emsdkVer
       if not dirExists(verDir):
-        errCheck execCmd("cp -ar " & emsdkDir & " " & verDir)
+        errCheck execCmd("cp -a " & emsdkDir & " " & verDir)
         setCurrentDir(verDir)
         errCheck execCmd("./emsdk install " & emsdkVer)
         errCheck execCmd("./emsdk activate " & emsdkVer)
