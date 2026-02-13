@@ -46,7 +46,6 @@ when defined(nimscript):
           exec "./emsdk activate " & emsdkVer
       let curDir = getCurrentDir()
       exec "cd " & verDir & " && . ./emsdk_env.sh && cd " & curDir & " && " & cmd
-      echo "---"
     else:
       echo "error: emsdk version [", ver, "] is not found"
 
