@@ -98,3 +98,24 @@ else:
     else:
       echo "error: emsdk version [", ver, "] is not found"
     setCurrentDir(curDir)
+
+  proc installEmsdk*(ver: string = "latest"): tuple[ret: bool, ver: string] {.discardable.} =
+    let curDir = getCurrentDir()
+    if not dirExists(emsdkDir):
+      errCheck execCmd("mkdir -p " & envDir)
+      setCurrentDir(envDir)
+      errCheck execCmd(gitClone)
+    else:
+      setCurrentDir(emsdkDir)
+      errCheck execCmd("git pull")
+
+    let (ret, emsdkVer) = verCheck(ver)
+    if ret:
+      let verDir = emsdkDir & "_" & emsdkVer
+      if not dirExists(verDir):
+        errCheck execCmd("cp -a " & emsdkDir & " " & verDir)
+        setCurrentDir(verDir)
+        errCheck execCmd("./emsdk install " & emsdkVer)
+        errCheck execCmd("./emsdk activate " & emsdkVer)
+    setCurrentDir(curDir)
+    result = (ret, emsdkVer)
