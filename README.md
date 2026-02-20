@@ -31,9 +31,9 @@ emsdkEnv("emmake make")
 ## Command Line
 ```shell
 emsdkenv 3.1.65
-source ~/.emsdkenv/emsdk_3.1.65/emsdk_env.sh
 emcc -v
 ```
+Press Ctrl+D to exit the emsdkenv shell.
 
 ## License
 MIT
