@@ -22,4 +22,4 @@ when isMainModule:
       echo "error: emsdk version [", ver, "] is not found"
     showAvailableVersions()
     echo "Installed:"
-    discard execCmd("ls ~/.emsdkenv/emsdk_*/emsdk_env.sh | sed \"s|^$HOME|~|\" | sed 's/^/source /'")
+    discard execCmd("ls -vr ~/.emsdkenv/emsdk_*/emsdk_env.sh | sed \"s|^$HOME|~|\" | sed 's/^/source /'")
