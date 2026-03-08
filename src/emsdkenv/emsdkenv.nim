@@ -51,6 +51,7 @@ when defined(nimscript):
 
 else:
   import std/osproc
+  import std/strutils
 
   proc verCheck(ver: string): tuple[ret: bool, ver: string] =
     var ver = ver
@@ -69,6 +70,31 @@ else:
       return (false, "")
     except:
       return (false, "")
+
+  proc showAvailableVersions*() =
+    var output = "Available:\n"
+    var lineLen = 0
+    try:
+      let tags = parseFile(tagFile)
+      for k, v in tags["aliases"]:
+        if v.getStr[^1].isDigit:
+          output.add(" " & k)
+          inc(lineLen, k.len + 1)
+          if lineLen > 64:
+            output.add("\n")
+            lineLen = 0
+      for k, _ in tags["releases"]:
+        if k[^1].isDigit:
+          output.add(" " & k)
+          inc(lineLen, k.len + 1)
+          if lineLen > 64:
+            output.add("\n")
+            lineLen = 0
+      if output[^1] == '\n':
+        output.setLen(output.len - 1)
+      echo output
+    except:
+      echo "error: show available versions"
 
   proc errCheck(errCode: int) =
     if errCode != 0:

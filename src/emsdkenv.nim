@@ -18,5 +18,7 @@ when isMainModule:
     var command = ". ~/.emsdkenv/emsdk_" & emsdkVer & "/emsdk_env.sh && emcc -v && " & shell
     discard execl(shell, "sh", "-c", command, nil)
   else:
-    echo "error: emsdk version [", ver, "] is not found"
+    if ver != "info" and ver != "list" and ver != "show" and ver != "version" and ver != "versions":
+      echo "error: emsdk version [", ver, "] is not found"
+    showAvailableVersions()
     discard execCmd("ls ~/.emsdkenv/emsdk_*/emsdk_env.sh | sed \"s|^$HOME|~|\" | sed 's/^/source /'")
