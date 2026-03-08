@@ -22,18 +22,24 @@ proc emsdkEnv(cmd: string, ver: string = "latest")
 ```nim
 import emsdkenv
 
-emsdkEnv("nim c -d:emscripten --noMain:on -o:newcomer.js newcomer.nim")
-emsdkEnv("nim c -d:emscripten --noMain:on -o:legacy.js legacy.nim", "3.1.65")
-emsdkEnv("emconfigure ./configure")
-emsdkEnv("emmake make")
+emsdkEnv "nim c -d:emscripten --noMain:on -o:newcomer.js newcomer.nim"
+emsdkEnv "nim c -d:emscripten --noMain:on -o:legacy.js legacy.nim", "3.1.65"
+emsdkEnv "emconfigure ./configure"
+emsdkEnv "emmake make"
 ```
 
 ## Command Line
+### Install emsdk and select it
 ```shell
 emsdkenv 3.1.65
 emcc -v
 ```
 Press Ctrl+D to exit the emsdkenv shell.
+
+### Show available versions
+```shell
+emsdkenv info
+```
 
 ## License
 MIT
