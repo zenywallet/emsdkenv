@@ -21,4 +21,5 @@ when isMainModule:
     if ver != "info" and ver != "list" and ver != "show" and ver != "version" and ver != "versions":
       echo "error: emsdk version [", ver, "] is not found"
     showAvailableVersions()
+    echo "Installed:"
     discard execCmd("ls ~/.emsdkenv/emsdk_*/emsdk_env.sh | sed \"s|^$HOME|~|\" | sed 's/^/source /'")
